@@ -1,0 +1,80 @@
+
+<!-- determines if the page is authenciated -->
+<% if(Auth){ %>
+    <%- include('./partials/nav.ejs') %>
+    <% }else{ %>
+        <%- include('./partials/header.ejs') %>
+        <%}%>
+   <% if(Auth) {%>
+    <main class="container mx-auto px-4 py-8 min-h-[100vh]" id="auth-home-page">
+        <% }else{ %>
+            <main class="container mx-auto px-4 py-8 min-h-[100vh]" id="home-page">
+        <% } %>
+
+    <div class="text-center mb-8 ">
+        <h1 class="text-3xl font-heading font-bold mb-6">
+            Search Books
+            <div class="w-24 h-1 bg-yellow-500 mx-auto mt-2"></div>
+        </h1>
+        <div class="relative max-w-2xl mx-auto" >
+           <form class="flex bg-gray-400 px-4 rounded-full items-center" id="search-form" method="POST" action="/books/search">
+            <input id="searchBook" type="text" name="search" placeholder="search" class="w-full p-3 rounded-lg bg-gray-400 text-center text-white placeholder-white focus:outline-none">
+           <button type="submit">
+            <img src="./images/icons/mdi--search.svg" class="inline-block" alt="">
+           </button>
+        </form>
+        </div>
+    </div>
+    <h3 class="text-2xl font-semibold mb-6 text-center"  id="label"></h3>
+        <div class="mx-auto my-4 spinner "></div>
+        <% if(book.title){ %>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4 justify-center" id="container">
+        <!-- Book Cards will be here -->   
+            <div class="bg-slate-800  rounded-lg overflow-hidden col-start-2 max-w-[330px]" id="book-card">
+                <div class="h-64">
+                <img id="bookFace" src="<%=book.bookCover%>" alt="<%=book.title%>" class="size-full object-contain">
+                </div>
+                <div class="p-4">
+                    <h2 class="text-xl text-white font-semibold" id="bookName"><%=book.title%></h2>
+                    <p class="text-gray-300 mt-2">
+                    Author: 
+                    <span id="writer">
+                    <%=book.author%>
+                    </span>
+                    </p>
+                    <p class="text-gray-300 mt-1">
+                    Published date: 
+                    <span id="publishedDate">
+                    <%=book.published%>
+                    </span>
+                    </p>
+                    <button  class="addBook mt-4 px-4 py-2 border cursor-pointer border-yellow-500 text-yellow-500 rounded hover:bg-yellow-500 hover:text-white transition-colors">Add Book</button>
+                </div>
+            </div> 
+        </div> 
+        <% }else{ %> 
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4 justify-center" id="container">
+                </div>
+            <% } %>
+            <% if (messages.success && messages.success.length > 0) { %>
+                <div class="alert alert-success">
+                  <% messages.success.forEach(msg => { %>
+                    <p><%= msg %></p>
+                  <% }) %>
+                </div>
+              <% } %>
+              
+              <% if (messages.error && messages.error.length > 0) { %>
+                <div class="alert alert-danger">
+                  <% messages.error.forEach(msg => { %>
+                    <p><%= msg %></p>
+                  <% }) %>
+                </div>
+              <% } %>
+              
+              
+              
+    </div>
+</main>
+
+<%- include('./partials/footer.ejs') %>

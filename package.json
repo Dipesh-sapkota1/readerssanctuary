@@ -1,0 +1,37 @@
+{
+    "name": "readers_sanctuary",
+    "version": "1.0.0",
+    "description": "A book note application where you can share your thoughts about books",
+    "main": "app.js",
+    "type": "module",
+    "scripts": {
+        "start": "node .",
+        "dev": "nodemon .",
+        "css": " tailwindcss -i ./public/css/input.css -o ./public/css/style.css --watch"
+    },
+    "dependencies": {
+        "axios": "^1.7.9",
+        "bcrypt": "^5.1.1",
+        "body-parser": "^1.19.0",
+        "connect-flash": "^0.1.1",
+        "connect-session-sequelize": "^7.1.7",
+        "dotenv": "^16.4.7",
+        "ejs": "^3.1.6",
+        "express": "^4.21.2",
+        "express-session": "^1.18.1",
+        "passport": "^0.7.0",
+        "passport-google-oauth20": "^2.0.0",
+        "passport-local": "^1.0.0",
+        "pg": "^8.13.1",
+        "pg-hstore": "^2.3.4",
+        "sequelize": "^6.37.5"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.9",
+        "tailwindcss": "^3.4.17"
+    },
+    "author": {
+        "name": "Dipesh sapkota"
+    },
+    "license": "ISC"
+}

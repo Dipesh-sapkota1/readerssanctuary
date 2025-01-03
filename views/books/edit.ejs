@@ -1,0 +1,76 @@
+<%- include('../partials/nav.ejs') %>
+<main class="container mx-auto px-4 py-8" id="edit-page">
+    <h1 class="text-2xl font-bold text-center mx-auto w-fit mb-8 font-heading">
+        Edit your book
+        <div class="w-20 h-1 bg-yellow-500 rounded-xl mt-1"></div>
+    </h1>
+    
+    <div class="max-w-2xl mx-auto bg-gray-400 rounded-lg p-8">
+        <h3 class="text-xl font-semibold mb-6 text-center font-heading">
+           <%=book.title%>
+        </h3>
+        
+        <form id="editBookForm" class="space-y-6" action="/books/edit" method="POST">
+            <div>
+                <label class="block text-lg font-medium mb-2">Review</label>
+                <input
+                    type="text" 
+                    name="review"
+                    class="w-full h-32 p-3 rounded-lg bg-white text-gray-700 placeholder-gray-400 resize-none"
+                    placeholder="Write a review about book"
+                    value="<%=book.review %>"
+                    
+                ></input>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <label class="text-lg font-medium">Rating</label>
+                <input 
+                    name="rating"
+                    type="number" 
+                    value="<%=book.rating %>"
+                    class="w-24 p-2 rounded bg-white text-gray-700"
+                    placeholder="Number"
+                    min="1"
+                    max="10">
+            </div>
+
+            <div>
+                <label class="block text-lg font-medium mb-2">Notes</label>
+                <input name="notes"
+                    type="text"
+                    class="w-full h-32 p-3 rounded-lg bg-white text-gray-700 placeholder-gray-400 resize-none"
+                    placeholder="Write a note about book"
+                    value="<%=book.notes %>"
+                ></input>
+            </div>
+            <div>
+                <input type="number" name="id" class="hidden" value="<%=book.id%>">
+            </div>
+
+            <div>
+                <button 
+                    type="submit"
+                    class="bg-gray-800 text-white px-8 py-2 rounded hover:bg-gray-700 transition duration-300">
+                    submit
+                </button>
+            </div>
+        </form>
+    </div>
+    <% if (messages.success) { %>
+        <div class="alert alert-success">
+          <% messages.success.forEach(msg => { %>
+            <p><%= msg %></p>
+          <% }) %>
+        </div>
+      <% } %>
+      <% if (messages.error) { %>
+        <div class="alert alert-danger">
+          <% messages.error.forEach(msg => { %>
+            <p><%= msg %></p>
+          <% }) %>
+        </div>
+      <% } %>
+      
+</main>
+<%- include('../partials/footer.ejs') %>

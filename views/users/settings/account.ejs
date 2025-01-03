@@ -1,0 +1,51 @@
+<%- include('../../partials/nav.ejs') %>
+ <!-- Main Content -->
+ <main class="flex min-h-screen" id="account-setting-page">
+    <!-- Sidebar - Hidden on mobile by default -->
+    <div class="hidden absolute  md:block w-64 md:static h-full bg-white shadow-md transition-all duration-300 ease-linear" id="sideMenu">
+        <div class="p-4">
+            <a href="/users/profileSettings" class="block font-medium py-2 text-gray-800 hover:bg-gray-100 rounded px-2">Profile settings</a>
+            <a href="/users/accountSettings" class="block font-medium py-2 bg-gray-200 text-gray-800 rounded px-2">Account settings</a>
+        </div>
+    </div>
+
+    <!-- Mobile Hamburger Menu -->
+    <div class="md:hidden fixed bottom-4 right-4 z-50">
+        <button class="bg-gray-800 text-white p-3 rounded-full shadow-lg" id="sideMenuBtn">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="flex-1 p-8">
+        <h2 class="text-2xl font-bold mb-6 font-heading">Account Settings</h2>
+        
+        <!-- Change Password Section -->
+        <form class="mb-8" id="password-form" method="POST" action="/users/change">
+            <h3 class="text-xl mb-4 font-heading">Change Password</h3>
+            <div class="form-group mb-3">
+                <label class="block" for="current">Current Password</label>
+                <input id="current-password" required type="password" name="currentPassword" placeholder="Current password" class="w-full max-w-md px-4 py-2 border rounded-md">
+            </div>
+            <div class="form-group mb-3">
+                <label class="block" for="new">New Password</label>
+                <input id="new-password" required type="password" name="newPassword" placeholder="New password" class="block w-full max-w-md px-4 py-2 border rounded-md">
+                <small id="message"  class="hidden text-red-500">Password should be different</small>
+                <% if (success_msg) { %>
+                    <div class="alert alert-success text-green-600"><%= success_msg %></div>
+                  <% } %>
+                  
+                  <% if (error_msg) { %>
+                    <div class="alert alert-danger text-red-600"><%= error_msg %></div>
+                  <% } %>
+            </div>
+            <button class="block bg-white text-gray-800 px-6 py-2 rounded-md border hover:bg-gray-50">
+                Change Password
+            </button>
+        </form>
+    </div>
+</main>
+
+<%- include('../../partials/footer.ejs') %>

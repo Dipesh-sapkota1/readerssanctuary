@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <script src="https://unpkg.com/axios/dist/axios.min.js" defer></script>
+    <script type="module" src="/js/script.js" defer></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Readers Sanctuary | <%=title%> </title>
+</head>
+<body class="bg-gray-200 font-body">
+    <nav class="bg-secondary text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-xl min-w-36">
+                <a href="/home">
+                    <img src="/images/logo.png" alt="logo" class="inline-block w-48">
+                </a> 
+            </div>
+            <!-- Hamburger Menu Button -->
+            <button id="navMenuBtn" class="md:hidden">
+                <i class="fa-solid fa-bars fa-xl"></i>
+            </button>
+            <!-- Navigation Links -->
+            <div id="navLinks" class=" hidden md:flex md:gap-6 md:items-center absolute md:static left-0 right-0 top-[72px] z-10 bg-secondary  p-4 md:p-0">
+                <a href="/home" class="hover:text-yellow-500 block py-2 md:py-0">Home</a>
+                <a href="/home/about" class="hover:text-yellow-500 block py-2 md:py-0">About</a>
+                <a href="/home/posts" class="hover:text-yellow-500 block py-2 md:py-0">Posts</a>
+                <!-- Hamburger menu links  -->
+                <a href="/auth/login" class="hover:text-yellow-500 block py-2 md:py-0 md:hidden">Login</a>
+                <a href="/auth/signup" class="hover:text-yellow-500 block py-2 md:py-0 md:hidden">Sign Up</a>
+                   <!-- For Desktop  -->
+                <a href="/auth/login" class="hidden md:inline-block transition duration-300 border border-white p-2 hover:text-secondary hover:bg-gray-100 text-center w-[100px]  my-2 md:my-0 ">Login</a>
+                <a href="/auth/signup" class="hidden md:inline-block transition duration-300 border border-white p-2 hover:text-secondary hover:bg-gray-100 text-center w-[100px]  my-2 md:my-0 ">Sign Up</a>
+            </div>
+        </div>
+    </nav>

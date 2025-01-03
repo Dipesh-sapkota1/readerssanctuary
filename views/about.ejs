@@ -1,0 +1,29 @@
+
+<!-- determines if the page is authenciated -->
+<% if(Auth){ %>
+    <%- include('./partials/nav.ejs') %>
+    <% }else{ %>
+        <%- include('./partials/header.ejs') %>
+        <%}%>
+   <% if(Auth) {%>
+    <main class="container mx-auto px-4 py-16 text-center" id="auth-about-page">
+        <% }else{ %>
+            <main class="container mx-auto px-4 py-16 text-center" id="about-page">
+        <% } %>
+        <h1 class="text-5xl font-bold mb-6 text-gray-900 font-heading">
+            Discover Your Reading<br />
+            Oasis at Readers<br />
+            Sanctuary
+        </h1>
+        <p class="text-xl mb-8 text-gray-700">
+            Explore, Track, and Share Your Book Collection
+        </p>
+       
+        <p class="md:columns-2">
+        Welcome to Readers Sanctuary, the ultimate haven for book lovers and literary enthusiasts! Our app provides a vibrant community where readers can discover, share, and discuss their favorite books. Whether you're into the latest bestsellers, timeless classics, or hidden gems, Readers Sanctuary has something for everyone. Our user-friendly platform allows you to create personalized reading lists, write reviews, and join book clubs to engage in meaningful conversations with fellow readers. With tailored recommendations and a diverse range of genres, finding your next great read has never been easier.
+
+        At Readers Sanctuary, we believe that reading should be a shared experience. Our app not only connects you with books but also with people who share your passion for literature. Join our thriving community to participate in live discussions, author Q&A sessions, and exclusive events. Stay updated with the latest book releases and literary news, and make your voice heard by contributing to our collective pool of knowledge and insights. Whether you're a casual reader or a bibliophile, Readers Sanctuary is your gateway to a world of stories and ideas. Dive in, explore, and let your love for reading flourish!
+        </p>
+    </main>
+
+<%- include('./partials/footer.ejs') %>

@@ -1,0 +1,76 @@
+<%- include('../partials/nav.ejs') %>
+
+    <main class="container mx-auto px-4 py-8 min-h-screen" id="book-list-page">
+        <div class="flex justify-between items-center mb-8">
+            <h2 class="text-2xl font-bold">
+                My Book List
+                <div class="w-20 h-1 bg-yellow-500 rounded-xl mt-1"></div>
+            </h2>
+            <div class="relative">
+                <button id="sortButton" class="bg-gray-800 text-white px-6 py-2 rounded flex items-center gap-2">
+                    Sort By
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div id="sortDropdown" class="hidden absolute right-0 mt-2 w-36 z-50 bg-gray-800 text-white rounded shadow-lg">
+                  <a class="block w-full text-left px-4 py-2 hover:bg-gray-700" href="/books/booklist?date=desc">Newest Book</a>
+                  <a class="block w-full text-left px-4 py-2 hover:bg-gray-700" href="/books/booklist?date=asc">Oldest Book</a>
+                  <a class="block w-full text-left px-4 py-2 hover:bg-gray-700" href="/books/booklist?rating=desc">Highest Rating</a>
+                  <a class="block w-full text-left px-4 py-2 hover:bg-gray-700" href="/books/booklist?rating=asc">Lowest Rating</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+            <% books.forEach(book => { %>
+              <div class="relative ">
+                <div class="rounded-lg overflow-hidden shadow-lg h-full flex flex-col">
+                  <div class="h-64 bg-gray-800">
+                    <img src="<%=book.bookCover%>" alt="<%=book.title %>" class="size-full object-contain">
+                  </div>
+                  <div class="p-4 bg-gray-800 text-white flex-grow flex flex-col justify-between">
+                    <div>
+                      <h3 class="font-bold text-lg mb-2 line-clamp-1"><%=book.title %></h3>
+                      <p class="text-gray-300 line-clamp-1">Author: <%=book.author %></p>
+                      <p class="text-gray-300 mb-4 line-clamp-1">Published Date: <%=book.publishedDate %></p>
+                    </div>
+                    <div class="flex gap-4">
+                      <a href="/books/edit/<%=book.id%>" class=" px-6 py-2 rounded btn-outline">Edit</a>
+                      <a class="px-6 py-2 rounded btn-outline delete-btn">Delete</a>
+                    </div>
+                  </div>
+                </div>
+               <!-- Delete Confirmation Modal -->
+    <div class="hidden delete-modal absolute bottom-0 z-50 left-1/2 transform -translate-x-1/2 translate-y-1/2 bg-secondary text-white p-4 rounded-lg shadow-lg w-64">
+        <p class="text-center mb-4">Are you sure you want to delete?</p>
+        <div class="flex justify-center gap-4">
+            <button class="bg-red-500 hover:bg-red-800 text-white px-4 py-2 transition duration-300 rounded cancel-btn">Cancel</button>
+            <button data-Id="<%=book.id%>" class="bg-green-500 hover:bg-green-800 transition duration-300 text-white px-4 py-2 rounded confirm-delete-btn">Delete</button>
+        </div>
+    </div>
+              </div>
+            <% }); %>
+          </div>
+          <% if (messages.success) { %>
+            <div class="alert alert-success">
+              <% messages.success.forEach(msg => { %>
+                <p><%= msg %></p>
+              <% }) %>
+            </div>
+          <% } %>
+          <% if (messages.error) { %>
+            <div class="alert alert-danger">
+              <% messages.error.forEach(msg => { %>
+                <p><%= msg %></p>
+              <% }) %>
+            </div>
+          <% } %>
+          
+    </main>
+
+    <%- include('../partials/footer.ejs') %>
+
+   
+</body>
+</html>

@@ -1,0 +1,79 @@
+ <%- include('./partials/nav.ejs') %>
+ <!-- Main Content -->
+ <main class="container mx-auto px-4 py-8 min-h-screen" id="public-profile-page">
+    <div class="absolute top-30 flex items-center mb-8">
+        <a href="/home/posts" class="p-2 rounded-full cursor-pointer bg-gray-800 text-white hover:bg-gray-700">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+        </a>
+    </div>
+    <h1 class="text-3xl font-bold mb-8 w-fit mx-auto font-heading ">
+      <%=user.username%> Book Shelf
+        <div class="w-24 h-1 bg-yellow-500 rounded-xl  mt-1"></div>
+    </h1>
+    
+    <!-- About Me Section -->
+    <section class="mb-12">
+        <h2 class="text-2xl font-bold mb-4 font-heading">
+            About <%=user.username %>
+            <div class="w-20 h-1 bg-yellow-500 rounded-xl mt-1"></div>
+        </h2>
+        <p class="text-gray-700 max-w-3xl">
+           <%=user.bio %>
+        </p>
+    </section>
+
+    <!-- Book List Section -->
+    <section>
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold font-heading">
+                <%user.username%> Book List
+                <div class="w-20 h-1 bg-yellow-500 rounded-xl mt-1"></div>
+            </h2>
+            <div class="relative z-10">
+                <button id="sortButton" class="bg-gray-800 text-white px-6 py-2 rounded flex items-center gap-2">
+                    Sort By
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div  id="sortDropdown" class="hidden absolute right-0 mt-2 w-36 bg-gray-800 text-white rounded shadow-lg">
+                    <a class="block w-full text-left px-4 py-2 hover:bg-gray-700" href="/home/public/<%=user.id%>?date=desc">Newest Book</a>
+                    <a class="block w-full text-left px-4 py-2 hover:bg-gray-700" href="/home/public/<%=user.id%>?date=asc">Oldest Book</a>
+                    <a class="block w-full text-left px-4 py-2 hover:bg-gray-700" href="/home/public/<%=user.id%>?rating=desc">Highest Rating</a>
+                    <a class="block w-full text-left px-4 py-2 hover:bg-gray-700" href="/home/public/<%=user.id%>?rating=asc">Lowest Rating</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Book Grid -->
+        <div class="grid  md:grid-cols-1 lg:grid-cols-2 gap-4">
+            <!-- card Template -->
+             <% books.forEach(book => { %>
+                  <div class="bg-slate-800 p-6 rounded-lg flex gap-6 max-w-2xl">
+                <div class="flex-shrink-0">
+                    <div class="w-32 h-44 bg-white rounded">
+                        <img src="<%=book.bookCover%>" alt="<%book.title%>" class="w-full h-full object-cover rounded">
+                    </div>
+                </div>
+            
+                <div class="flex-grow">
+                    <div class="flex justify-between items-start">
+                        <h2 class="text-2xl font-semibold text-white"><%=book.title%></h2>
+                       
+                    </div>
+                    <div class="mt-2 text-gray-300">
+                        <p>Date Added: <%=book.dateAdded%></p>
+                        <p>Ratings: <%=book.rating%></p>
+                    </div>
+                    <p class="mt-4 text-gray-300"><%=book.review%></p>
+                    <a href="/books/details/<%=book.id%>" class="mt-4 btn-outline">Read More »</a>
+                </div>
+            </div>
+       <%  }); %>
+      <!-- card end -->
+        </div>
+    </section>
+</main>
+<%- include('./partials/footer.ejs') %>

@@ -1,0 +1,66 @@
+<%- include('./partials/nav.ejs') %>
+ <!-- Main Content -->
+ <main class="container mx-auto px-4 py-8 flex-grow" id="posts-page">
+    <h1 class="text-3xl md:text-4xl mb-6 md:mb-8 text-center font-heading">
+        Book Readers
+        <div class="w-24 h-1 bg-yellow-500 mx-auto mt-2"></div>
+    </h1>
+    
+    <!-- Reader Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Reader Card Template -->
+      <% users.forEach(user => { %>
+        <div class="bg-gradient-to-b from-yellow-500 to-yellow-600 rounded-3xl overflow-hidden shadow-lg">
+            <div class="p-6 text-center">
+                <img src="<%=user.user_img%>" alt="<%=user.username%>" class="w-20 h-20 rounded-full mx-auto border-4 border-white">
+                <h3 class="text-white text-xl mt-4 font-heading"><%= user.username %></h3>
+            </div>
+            <div class="bg-secondary p-6 space-y-4">
+                <div class="flex gap-4 text-gray-300">
+                    <span> Favourite Genre:</span>
+                    <span><%=user.preferredGenre%></span>
+                </div>
+                <div class="flex gap-4 text-gray-300">
+                    <span class="w-1/3 ">Favourite Book:</span>
+                    <span class="flex-1 "><%=user.favouriteBook%></span>
+                </div>
+                <div class="flex gap-4 text-gray-300 ">
+                    <span class="w-1/3 ">Recent Book:</span>
+                    <span class="flex-1 ">
+                        <% user.Books.forEach(book => { %>
+                            <% if(book) {%>
+                                <%=book.title%>
+                                <% }else{ %>
+                                    Nothing to show
+                                    <% } %>
+                       <% }); %>
+                    </span>
+                </div>
+                <a href="/home/public/<%=user.id%>" class="btn-outline mx-auto">
+                    My collections
+                </a>
+            </div>
+        </div>
+
+        <% }) %>
+    </div>
+    <% if (messages.success && messages.success.length > 0) { %>
+        <div class="alert alert-success">
+          <% messages.success.forEach(msg => { %>
+            <p><%= msg %></p>
+          <% }) %>
+        </div>
+      <% } %>
+      
+      <% if (messages.error && messages.error.length > 0) { %>
+        <div class="alert alert-danger">
+          <% messages.error.forEach(msg => { %>
+            <p><%= msg %></p>
+          <% }) %>
+        </div>
+      <% } %>
+      
+</main>
+
+
+<%- include('./partials/footer.ejs') %>

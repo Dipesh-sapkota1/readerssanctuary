@@ -1,0 +1,104 @@
+<%- include('../../partials/nav.ejs') %>
+<!-- Main Content -->
+<main class="flex min-h-screen" id="profile-setting-page">
+    <!-- Sidebar - Hidden on mobile -->
+    <div class="hidden absolute  md:block w-64 md:static h-full bg-white shadow-md transition-all duration-300 ease-linear" id="sideMenu">
+        <div class="p-4">
+            <a href="/users/profileSettings" class="block cursor-pointer font-medium py-2 bg-gray-200 text-gray-800 rounded px-2">Profile settings</a>
+            <a href="/users/accountSettings" class="block cursor-pointer font-medium py-2 text-gray-800 hover:bg-gray-100 rounded px-2">Account settings</a>
+        </div>
+    </div>
+
+    <!-- Mobile Hamburger Menu -->
+    <div class="md:hidden fixed bottom-4 right-4 z-50">
+        <button class="bg-gray-800 text-white p-3 rounded-full shadow-lg" id="sideMenuBtn">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="flex-1 p-8">
+        <form class="max-w-2xl" action="/users/profileInfo" method="POST" id="profileForm">
+            <h2 class="text-2xl font-bold mb-6">Profile Settings</h2>
+          
+            <!-- User img -->
+            <div class="mb-6">
+              <label class="block text-lg mb-2" for="username">Change Your Username</label>
+              <input type="text" name="username" class="w-full p-2 border rounded-md resize-none" placeholder="Your username"></input>
+            </div>
+            <!-- User img -->
+            <div class="mb-6">
+              <label class="block text-lg mb-2" for="user_img">Add Image URL</label>
+              <input name="user_img" class="w-full p-2 border rounded-md resize-none" placeholder="Add your image URL"></input>
+            </div>
+              <!-- Bio Section -->
+            <div class="mb-6">
+              <label class="block text-lg mb-2" for="bio">Bio</label>
+              <textarea 
+                id="bio"
+                name="bio"
+                class="w-full p-3 border rounded-md h-32 resize-none"
+                placeholder="Write something about yourself"
+                required
+              ></textarea>
+            </div>
+          
+            <!-- Preferred Genre -->
+            <div class="mb-6">
+              <label class="block text-lg mb-2" for="preferredGenre">Preferred Genre</label>
+              <input 
+                type="text" 
+                id="preferredGenre"
+                name="preferredGenre"
+                class="w-full max-w-md p-3 border rounded-md"
+                placeholder="Placeholder"
+                required
+              >
+            </div>
+          
+            <!-- Favourite Book -->
+            <div class="mb-6">
+              <label class="block text-lg mb-2" for="favouriteBook">Favourite Book</label>
+              <input 
+                type="text" 
+                id="favouriteBook"
+                name="favouriteBook"
+                class="w-full max-w-md p-3 border rounded-md"
+                placeholder="Placeholder"
+                required
+              >
+            </div>
+            <!-- temp id -->
+            <div class="mb-6 hidden">
+              <input type="number" name="id" value="<%#id%>" class="hidden">
+            </div>
+            <!-- Submit Button -->
+            <div class="mt-8">
+              <button 
+                type="submit" 
+                class="bg-blue-900 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors duration-200"
+              >
+                Save Changes
+              </button>
+            </div>
+          </form> 
+    </div>
+    <% if (messages.success) { %>
+      <div class="alert alert-success">
+        <% messages.success.forEach(msg => { %>
+          <p><%= msg %></p>
+        <% }) %>
+      </div>
+    <% } %>
+    <% if (messages.error) { %>
+      <div class="alert alert-danger">
+        <% messages.error.forEach(msg => { %>
+          <p><%= msg %></p>
+        <% }) %>
+      </div>
+    <% } %>
+    
+  </main>
+<%- include('../../partials/footer.ejs') %>

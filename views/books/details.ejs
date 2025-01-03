@@ -1,0 +1,61 @@
+<%- include('../partials/nav.ejs') %>
+<main class="container mx-auto px-4 py-8" id="book-detail-page">
+    <div class="absolute top-30 flex items-center mb-8">
+        <a href="/home/public/<%=book.userId%>" class="p-2 rounded-full cursor-pointer bg-gray-800 text-white hover:bg-gray-700">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+        </a>
+    </div>
+    <h1 class="text-3xl font-bold mb-8 w-fit mx-auto font-heading ">
+       Book Details
+        <div class="w-24 h-1 bg-yellow-500 rounded-xl  mt-1"></div>
+    </h1>
+    <div class="grid md:grid-cols-2 gap-8">
+        <div>
+            <img src="<%=book.bookCover%>" alt="<%=book.title%>" class="w-full rounded-lg shadow-lg"/>
+        </div>
+        <div>
+            <h2 class="text-3xl font-bold mb-4 font-heading"><%=book.title%></h2>
+            <div class="mb-4">
+                <p class="text-lg">Ratings: 
+                    <span class="font-semibold"><%=book.rating%></span>
+                </p>
+                <p class="text-lg">Published Date: 
+                    <span class="font-semibold"> <%=book.publishedDate%></span>
+                </p>
+                   
+            </div>
+            <div class="mb-6">
+                <p class="text-gray-700 leading-relaxed">
+                   <%=book.review %>
+                </p>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-4">Notes:</h3>
+                <ul class="space-y-4">
+                    <li class="flex gap-2">
+                        <span class="font-medium">Epic World-Building:</span> 
+                        <%=book.notes %>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <% if (messages.success) { %>
+        <div class="alert alert-success">
+          <% messages.success.forEach(msg => { %>
+            <p><%= msg %></p>
+          <% }) %>
+        </div>
+      <% } %>
+      <% if (messages.error) { %>
+        <div class="alert alert-danger">
+          <% messages.error.forEach(msg => { %>
+            <p><%= msg %></p>
+          <% }) %>
+        </div>
+      <% } %>
+      
+</main>
+<%- include('../partials/footer.ejs') %>
