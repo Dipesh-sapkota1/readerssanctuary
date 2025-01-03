@@ -35,19 +35,24 @@ export const addProfileInfo = async (req, res) => {
     const user = await User.findOne({ where: { id } });
 
     if (user) {
-      // Update the user profile
-      await User.update(
-        {
-          username,
-          user_img,
-          bio,
-          preferredGenre,
-          favouriteBook,
-        },
-        { where: { id } }
-      );
+      // Prepare an object to hold updated values
+      const updatedFields = {};
 
-      req.flash("success", "Profile information updated successfully.");
+      if (username) updatedFields.username = username;
+      if (user_img) updatedFields.user_img = user_img;
+      if (bio) updatedFields.bio = bio;
+      if (preferredGenre) updatedFields.preferredGenre = preferredGenre;
+      if (favouriteBook) updatedFields.favouriteBook = favouriteBook;
+
+      // Update the user profile only with the provided fields
+      if (Object.keys(updatedFields).length > 0) {
+        await User.update(updatedFields, { where: { id } });
+
+        req.flash("success", "Profile information updated successfully.");
+      } else {
+        req.flash("info", "No fields to update.");
+      }
+
       res.redirect("/home/posts");
     } else {
       req.flash("error", "User not found.");
@@ -59,6 +64,7 @@ export const addProfileInfo = async (req, res) => {
     res.redirect("/home/posts");
   }
 };
+
 
 
 export const myProfile = async(req, res) =>{
