@@ -10,6 +10,7 @@ const app = express();
 
 setMiddlewares(app);
 
+app.get('/',homeRouter);
 app.use('/auth', authRouter);
 app.use('/home',homeRouter);
 app.use('/books', bookRouter);
