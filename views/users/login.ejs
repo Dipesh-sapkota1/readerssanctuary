@@ -1,9 +1,9 @@
 <%- include('../partials/header.ejs') %>
   <!-- Auth Container -->
   <main class="container mx-auto px-4" id="login-page">
-    <div class="max-w-4xl mx-auto my-12 flex justify-center space-x-12">
+    <div class="max-w-4xl mx-auto my-12 md:flex gap-4 justify-center items-start ">
         <!-- Login Up Form -->
-        <div class="w-1/2 ">
+        <div class="md:w-1/2 mb-4">
             <h1 class="text-4xl mb-4 font-heading">Log In</h1>
             <form class="bg-secondary p-8 rounded-lg text-white" action="loginUser" method="POST">
                 <div class="mb-6">
@@ -21,12 +21,11 @@
             </form>
         </div>
 
-          <!-- Divider -->
-       <div class="w-px bg-gray-300"></div>
+        
 
        <!-- Google Login -->
-       <div class="w-1/2">
-           <h2 class="text-4xl mb-8 font-heading">Login with google</h2>
+       <div class="md:w-1/2">
+           <h2 class="text-4xl mb-4 font-heading">Login with google</h2>
            <a href="/auth/google" class="w-full bg-secondary p-4 rounded-lg flex items-center justify-center space-x-4 hover:bg-gray-600 transition duration-300">
                <span class="text-2xl text-white">
                 <i class="fa-brands fa-google"></i>
