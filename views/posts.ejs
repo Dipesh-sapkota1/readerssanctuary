@@ -1,6 +1,6 @@
 <%- include('./partials/nav.ejs') %>
  <!-- Main Content -->
- <main class="container mx-auto px-4 py-8 flex-grow" id="posts-page">
+ <main class="container mx-auto px-4 py-8 flex-grow min-h-screen" id="posts-page">
     <h1 class="text-3xl md:text-4xl mb-6 md:mb-8 text-center font-heading">
         Book Readers
         <div class="w-24 h-1 bg-yellow-500 mx-auto mt-2"></div>
@@ -11,9 +11,19 @@
         <!-- Reader Card Template -->
       <% users.forEach(user => { %>
         <div class="bg-gradient-to-b from-yellow-500 to-yellow-600 rounded-3xl overflow-hidden shadow-lg">
-            <div class="p-6 text-center">
-                <img src="<%=user.user_img%>" alt="<%=user.username%>" class="w-20 h-20 rounded-full mx-auto border-4 border-white">
-                <h3 class="text-white text-xl mt-4 font-heading"><%= user.username %></h3>
+            <div class="p-6 text-center h-40 grid items-center">
+              <% if(user.user_img){ %>
+                <div>
+                  <img src="<%=user.user_img%>" alt="<%=user.username%>" class="w-20 h-20 rounded-full mx-auto border-4 border-white">
+                  <h3 class="text-white text-xl mt-4 font-heading"><%= user.username %></h3>
+                </div>
+                <% }else{ %>
+                  <div>
+                    <img src="/images/user.svg" alt="<%=user.username%>" class="bg-yellow-500 w-20 h-20 rounded-full mx-auto border-4 border-white">
+                    <h3 class="text-white text-xl mt-4 font-heading"><%= user.username %></h3>
+                   </div>
+                  <% } %> 
+              
             </div>
             <div class="bg-secondary p-6 space-y-4">
                 <div class="flex gap-4 text-gray-300">
